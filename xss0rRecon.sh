@@ -1112,7 +1112,8 @@ run_step_3() {
         show_progress "Passive FUZZ domains with wordlist"
         python3 -m venv .venv
         source .venv/bin/activate 
-        dnsbruter -d "$domain_name" -w subs-dnsbruter-small.txt -c 150 -wt 80 -rt 500 -wd -ws wild.txt -o output-dnsbruter.txt || handle_error "dnsbruter"
+        # dnsbruter -d "$domain_name" -w subs-dnsbruter-small.txt -c 150 -wt 80 -rt 500 -wd -ws wild.txt -o output-dnsbruter.txt || handle_error "dnsbruter"
+        subfinder -d "$domain_name" -rl 500 -o output-dnsbruter.txt || handle_error "dnsbruter"
         sleep 5
 
         # Step 2: Active brute crawling domains
